@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <title>My Dashboard</title>
+   
+    <link rel="stylesheet" href="css/mydash.css">
+    <link rel="stylesheet" href="css/blog_list.css">
+    <link rel="stylesheet"
+    href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+  
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+    href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
+    <script src="https://kit.fontawesome.com/c6d6e74636.js" crossorigin="anonymous"></script>
+    <!-- <script src="js/scriptdashboard.js"></script> -->
+    
+</head>
+<body>
+    <div class="main-dash-container">
+        <div class="top-nav">
+          <center><h2 class="dashbord-text">Dashboard</h2></center> 
+            <div class="right-coner-icons">
+             <h4><a href="loginSignup.html">Logout</a></h4>
+            </div>
+        </div>
+        <div class="bx bx-menu" id="menu-icon">
+			
+        </div>
+        <div class="body-divs">
+            <div class="side-nav" id="sidenav"> 
+             
+                <div class="side-title"><p>Menu</p></div>
+                <ul class="navList">
+                    <li>Home</li>
+                    <li><a href="index.html#blog">Blogs</a></li>
+                    <li><a href="message.html">Message</a></li>
+                    <li>Notification</li>
+                </ul>
+                
+            </div>
+      
+<center>
+
+<div class="form" id="formBlogs">
+
+  <label class="ablog">Add a new Blog</label>
+      <table border="0"><tr><td>
+      <label>Title: </label></td><td><input type="text" placeholder="Enter a blog title" name="title" id="title" 
+        class="inputtext" onkeyup="validateTitle()"></td></tr>
+       <tr><td class="hidden"></td><td height="0.2" class="hidden"><span id="titleerror"></span></td></tr> 
+      <!-- <tr><td><label>Picture</label> </td><td><input type="file" name="picture"  class="input-file"></td></tr> -->
+      <tr><td><label>Author</label> </td><td><input type="text" name="author" class="inputtext" id="author"
+         placeholder="Author name... " onkeyup="validateAuthor()"></td></tr>
+        <tr><td></td><td><span id="authorerror"></span></td></tr> 
+      <tr><td><label>Descrption</label></td><td><textarea cols="24" rows="5" class="inputtext" 
+        onkeyup="validateDescription()"
+         placeholder="Write your Descrption of th blog here...." id="blogcontent" name="content"></textarea></td></tr>
+        <tr><td></td><td><span id="descriptionerror"></span></td></tr> 
+      
+</table>
+  <br/>
+      <!-- <button type="button" class="sendbutton">Post</button> -->
+      <button type="submit" class="sendbutton" id="postButton" onclick="return validateForm()">Create a Blog</button>
+      <!-- <input type="button" value="reset" name="reset" id="reset"> -->
+    
+  
+    </div> 
+ 
+<br/><br/>
+<!-- 
+<div class="allBlogs">
+  <div class="gallery">
+      <img src="images/icons/flutter.png" alt="Flutter" width="600" height="400">
+
+    <div class="desc">Flutter</div>
+    <div class="descrption"> Flutter is framework for Mobile Application development Flutter is an open-source UI ...<img src="images/icons/more.jpg" id="more"></div>
+    
+    <div class="options"><table border="0">
+
+      <tr><td><img src="images/icons/edit.png" id="edit"></td><td><img src="images/icons/delete1.png" id="delete"><td></tr>
+      
+          </table></div>
+  
+  </div>
+  
+  <div class="gallery">
+ 
+      <img src="images/icons/dart.png" alt="Dart" width="600" height="400">
+
+    <div class="desc">Dart</div>
+    <div class="descrption"> Dart is a programming language designed for client development..<img src="images/icons/more.jpg" id="more"></div>
+    
+    <div class="options"><table border="0">
+
+<tr><td><img src="images/icons/edit.png" id="edit"></td><td><img src="images/icons/delete1.png" id="delete"></td></tr>
+
+    </table></div>
+  </div>
+  
+  <div class="gallery">
+
+      <img src="images/icons/cyber.png" alt="CyberSecurity" width="600" height="400">
+
+    <div class="desc">CyberSecurity</div>
+    <div class="decrption"> Computer security, cybersecurity, 
+      or information technology.........
+      <img src="images/icons/more.jpg" id="more"></div>
+
+      <div class="options">
+
+        <tr><td><img src="images/icons/edit.png" id="edit" height="20" width="20"></td><td><img src="images/icons/delete1.png" id="delete"></td></tr>
+        
+            </table></div>
+  </div>
+</div> -->
+
+
+
+<div class="blog-container" id="blog">
+  
+  <div class="blog-container" id="blog">
+
+    <div class="blogs-container">
+       <center>
+
+        <a href="index.html" style="text-decoration: none; color:blue;font-family: inter;"> Back to user's page</a></label>
+    </div> </center> 
+  <br>
+</div>
+  <div id="blog-list" class="blog-list">
+      <template id="blog-template">
+          <div class="blog">
+              <h2 id="blog-title" class="blog-title">Lorem, ipsum dolor sit amet consectetur
+                  adipisicing elit.</h2>
+              <h4 id="blog-author" class="blog-author">Lorem, ipsum dolor.</h4>
+              <p id="blog-content" class="blog-content">Lorem ipsum dolor sit amet, consectetur
+                  adipisicing elit. Quae,
+                  veniam
+                  sint similique corrupti aliquam saepe. Dignissimos labore veniam ducimus ex
+                  obcaecati.
+                  Modi odit doloribus fugit magni eius obcaecati accusantium labore!</p>
+                  <div class="btn-list">
+                  <button id="blog-delete">Delete</button>
+              </div>
+          </div>
+          <br><br>
+      </template>
+  </div>
+  <br>
+  <!-- <a href="./create_blog.html" class="btn">Create Blog</a> -->
+</div>
+
+<br/>
+
+<br/>
+
+            </div>
+        </div>
+       
+    </div>
+
+    <script src="js/validateblogs.js"></script>
+
+		<script type="module">
+
+			import {
+	  getFirestore, doc, getDoc,getDocs, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField
+	} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js"
+  
+  
+  
+			  // Import the functions you need from the SDKs you need
+			  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+			  // TODO: Add SDKs for Firebase products that you want to use
+			  // https://firebase.google.com/docs/web/setup#available-libraries
+			
+			  // Your web app's Firebase configuration
+			  const firebaseConfig = {
+				apiKey: "AIzaSyB1VHGNrwTmCiYhONPl8yE6GvwpZsQnLT4",
+				authDomain: "mydashboard-d0814.firebaseapp.com",
+				projectId: "mydashboard-d0814",
+				storageBucket: "mydashboard-d0814.appspot.com",
+				messagingSenderId: "282132150467",
+				appId: "1:282132150467:web:6a0982aff64acd6e6eca76"
+			  };
+			
+			  // Initialize Firebase
+			  const app = initializeApp(firebaseConfig);
+			  const db = getFirestore();
+    
+  let NameBox = document.getElementById("title");
+	  let RollBox = document.getElementById("author");
+	  let SecBox = document.getElementById("blogcontent");
+	 
+	
+	  let insBtn = document.getElementById("postButton");
+
+	  async function sendMessage(){
+		var ref = collection(db, 'myBlogs');
+	
+		const docRef = await addDoc(ref, {
+		  title: NameBox.value,
+		  author: RollBox.value,
+		  description: SecBox.value
+		})
+  .then(() =>{
+			alert("Blogs Uploaded successfully");
+			document.getElementById("formBlogs").reset;
+		
+		})
+		.catch((error) =>{
+			alert("unSuccessfull updation of blogs, errro " + error);
+		})
+		console.log('document id is: '+ docRef.id);
+	}
+	insBtn.addEventListener('click', sendMessage);
+		
+
+
+
+
+//   var numbering = 0;
+//   var groupingToTable = document.getElementById('bodyOne');
+
+//   function AddItemToTable(title, author,description){
+//       let trow = document.createElement('tr')
+//       let td1 = document.createElement('td')
+//       let td2 = document.createElement('td')
+//       let td3 = document.createElement('td')
+//       let td4 = document.createElement('td')
+
+
+//       td1.innerHTML = ++numbering;
+//       td2.innerHTML = title;
+//       td3.innerHTML = author;
+//       td4.innerHTML = description;
+
+
+//       trow.appendChild(td1)
+//       trow.appendChild(td2)
+//       trow.appendChild(td3)
+//       trow.appendChild(td4)
+
+
+//       groupingToTable.appendChild(trow);
+
+//   }
+//       function AddAllItems(messageBox){
+//         numbering = 0;
+//         groupingToTable.innerHTML = '';
+//           messageBox.forEach(element => {
+//               AddItemToTable(element.title,element.author,element.phones,element.messages);
+//           });
+//       }
+ 
+    
+// const db1 = getFirestore();
+
+//               async function displayDataAtTheSameTime(){
+//                   const querySnapshot = await getDocs(collection(db1, 'myBlogs'));
+
+//                   var messages = [];
+//                   querySnapshot.forEach(doc =>{
+//                       messages.push(doc.data());
+//                   });
+//                   AddAllItems(messages);
+//               }
+//               window.onload = displayDataAtTheSameTime;
+
+</script>
+
+
+    <!-- <script src="./js/blog_create.js"></script>
+    <script src="./js/blog_list.js"></script> -->
+</body>
+</html>

@@ -225,12 +225,22 @@ span {
 .css-bar {
   width: 84%;
 }
+.php-bar {
+  width: 80%;
+}
 .js-bar {
   width: 74%;
 }
-.react-bar {
-  width: 80%;
+.py-bar {
+  width: 70%;
 }
+.react-bar {
+  width: 64%;
+}
+.django-bar {
+  width: 60%;
+}
+
 .services-content {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, auto));
@@ -293,7 +303,7 @@ span {
 }
 .portfolio-img img:hover {
   transform: scale(1.1);
-  transition: 1s;
+  transition: 2s;
 }
 .contact-form {
   display: grid;
