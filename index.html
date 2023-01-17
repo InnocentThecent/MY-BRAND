@@ -10,13 +10,49 @@
     <link rel="stylesheet" href="./css/style.css">
     <!-- Box Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <script>  
 
+        var attempt = 5; 
+  
+function validate(){
+var username = document.getElementById("username").value;
+var name=document.getElementById("name").value;
+var message=document.getElementById("message").value;
+var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+if(name == ""){
+    document.getElementById("wrongName").innerHTML = "This Field is Required";
+}
+else if(name.length<4){  
+document.getElementById("wrongName").innerHTML= "name must Contain at least 4 Character";  
+} 
+else if(name.length>4){  
+document.getElementById("wrongName").innerHTML="";  
+} 
+if(username == ""){
+document.getElementById("falseEmail").innerHTML="Email field cannot be empty";
+}
+if (atposition<1 || dotposition<atposition+2 || dotposition+2>=x.length){  
+ // alert("");  
+  document.getElementById("falseEmail").innerHTML="Please enter a valid e-mail address";
+  return false;  
+  } 
+if(message.length<10){  
+document.getElementById("wrongMessage").innerHTML=  
+"message must Contain at least 10 Character";
+document.getElementById("falseEmail").innerHTML="";
+} 
+
+else{
+    alert("Blog Added Successfully");
+}
+}
+        </script>  
 </head>
 
 <body>
     <!-- Navbar -->
     <header>
-        <a href="#" class="logo">Innocent</a>
+        <a href="loginSignup.html" class="logo">Innocent</a>
 
         <div class="bx bx-menu" id="menu-icon"></div>
 
@@ -28,7 +64,7 @@
             <li><a href="#portfolio">Portfolio</a></li>
             <li><a href="#blog">Blog</a></li>
             <li><a href="#contact">Contact</a></li>
-           <!-- <li><a href="loginSignup.html">Logout</a></li>-->
+           <!-- <li><a href="loginSignup.html">Admin</a></li>-->
             <div class="bx bx-moon" id="darkmode"></div>
         </ul>
     </header>
@@ -238,44 +274,49 @@
             <span>All about Updates</span>
         </div>
         <!-- Blog Content1 -->
-        <div class="about-container">
-            <div class="about-img">
-                <img src="blog-1.jpg" alt="">
-            </div>
-            <div class="about-text">
-                <br>
-                <h2><u>BLOG1</u></h2><br><br>
-                <p>Let us know your blockers Join us and we will let you know how you can
-                    grow your career or if you us to help you building the great platform
-                    of your business Don't hestate to reach on us!
-
-                    Another think is you will never regrete through working with us.</p>
-                <div class="information">
-
+        <div class="services-content">
+            <!-- Box 1 -->
+            <div class="services-box">
+                <div class="blog-profile-img">
+                    <img src="blog00.jpg" alt="">
                 </div>
-                <!--   <a href="#" class="btn">Comment</a> -->
+                <h3>Blog Title</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
+                    exercitationem.</p>
+                    <a href="blog.html">Learn More</a>
+            </div>
+            <!-- Box 2 -->
+            <div class="services-box">
+                <div class="blog-profile-img">
+                    <img src="blog-1.jpg" alt="">
+                </div>
+                <h3>Blog Title</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
+                    exercitationem.</p>
+                    <a href="blog.html">Learn More</a>
+            </div>
+            <!-- Box 3 -->
+            <div class="services-box">
+                <div class="blog-profile-img">
+                    <img src="blog-4.jpg" alt="">
+                </div>
+                <h3>Blog Title</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
+                    exercitationem.</p>
+                <a href="blog.html">Learn More</a>
+            </div>
+            <!-- Box 4 -->
+            <div class="services-box">
+                <div class="blog-profile-img">
+                    <img src="blog0.JPG" alt="">
+                </div>
+                <h3>Blog Title</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
+                    exercitationem.</p>
+                    <a href="blog.html">Learn More</a>
             </div>
         </div>
 
-        <!-- Blog Content2 -->
-        <div class="about-container">
-            <div class="about-img">
-                <img src="blog0.JPG" alt="">
-            </div>
-            <div class="about-text">
-                <br>
-                <h2><u>BLOG2</u></h2><br><br>
-                <p>Let us know your blockers Join us and we will let you know how you can
-                    grow your career or if you us to help you building the great platform
-                    of your business Don't hestate to reach on us!
-
-                    Another think is you will never regrete through working with us.</p>
-                <div class="information">
-
-                </div>
-                <!--   <a href="#" class="btn">Comment</a> -->
-            </div>
-        </div>
     </section>
     <!-- Contact -->
     <section class="contact" id="contact">
@@ -284,11 +325,14 @@
             <span>Connect With Us</span>
         </div>
         <div class="contact-form">
-            <form action="">
-                <input type="text" placeholder="Your Name">
-                <input type="email" name="" id="" placeholder="Your Email">
-                <textarea name="" id="" cols="30" rows="10" placeholder="Write Message Here..."></textarea>
-                <input type="button" value="Send" class="contact-button">
+            <form id="form_id" name="myform" action="" onsubmit="return validateform()">
+                <input type="text" placeholder="Your Name" name="name" id="name">
+                <label id="wrongName" style="color:red; font-style:italic;"></label> 
+                <input type="email" placeholder="Your Email" class="input" name="username" id="username">
+                <label id="falseEmail" style="color:red; font-style:italic;"></label> 
+                <textarea cols="30" rows="10" placeholder="Write Message Here..." name="message" id="message"></textarea>
+                <label id="wrongMessage" style="color:red; font-style:italic;"></label> 
+                <input type="button" class="contact-button" value="SEND" name="submit" id="submit" onclick="validate()">
             </form>
         </div>
 
@@ -314,6 +358,7 @@
     <!-- Link To JS -->
     <script src="./js/script.js"></script>
     <script src="js/loginScript.js"></script>
+    <script src="bg-script.js"></script>
     
     
 </body>

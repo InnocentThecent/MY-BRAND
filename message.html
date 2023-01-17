@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <title>My message</title>
+   
+    <link rel="stylesheet" href="css/mydash.css">
+    <link rel="stylesheet" href="css/blog_list.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet"
+    href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+  
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+ 
+
+    <script src="https://kit.fontawesome.com/c6d6e74636.js" crossorigin="anonymous"></script>
+    <!-- <script src="js/scriptdashboard.js"></script> -->
+    
+</head>
+<body>
+    <div class="main-dash-container">
+        <div class="top-nav">
+          <center><h2 class="dashbord-text">Dashboard</h2></center> 
+            <div class="right-coner-icons">
+             <h4><a href="loginSignup.html">Logout</a></h4>
+            </div>
+        </div>
+        <div class="bx bx-menu" id="menu-icon">
+			
+        </div>
+        <div class="body-divs">
+            <div class="side-nav" id="sidenav"> 
+             
+                <div class="side-title"><p>Menu</p></div>
+                <ul class="navList">
+                    <li><a href="Dashboard.html">Home</a></li>
+                    <li><a href="blogList.html">Blogs</a></li>
+                    <li><a href="message.html">Message</a></li>
+                    <li><a href="message.html"></a>Notification</li>
+                </ul>
+                
+            </div>
+      
+<center><br><br/>
+ <label>Your messages....</label>
+<div class="form"><br>
+ 
+     
+    </div> 
+
+ 
+<br/><br/>
+
+<div class="blog-container" id="blog">
+    <br/>
+    <br/>
+
+    <div class="blogs-container">
+        <div class="blogs">
+                <table id="table" border="1">
+                    <thead>
+                        <th>No</th>
+                        <th>Names</th>
+                        <th>Email</th>
+                        <th class="th">message content</th>
+                        <th></th>
+                    </thead>
+                    <tr>
+                        <td>1</td>
+                        <td>Ange</td>
+<td>angela@gmail.com</td>
+                        <td>DescriptionDart is a programming language designed for client development, 
+                          such as for the web and mobile apps. It is developed by Google and can also be used to build 
+                          server and desktop applications. It is an object-oriented, class-based, garbage-collected language
+                           with C-style syntax</td>
+                           <td>
+                            <button><button class="btn">Reply</button></td>
+                          </td>
+                          </tr>
+                </table>
+            
+            
+        </div>
+    </div> 
+  <br>
+</div><center>
+  <a href="Dashboard.html" style="text-decoration: none; color:blue;font-family: inter;"> Back</a></label></center>
+<br/>
+
+<br/>
+
+            </div>
+        </div>
+       
+    </div>
+
+
+    <script type="module">
+
+        var stdNo = 0;
+        var groupingOne = document.getElementById('bodyOne');
+
+        function AddItemToTable(name, roll, sec, gen){
+            let trow = document.createElement('tr')
+            let td1 = document.createElement('td')
+            let td2 = document.createElement('td')
+            let td3 = document.createElement('td')
+            let td4 = document.createElement('td')
+            let td5 = document.createElement('td')
+            let td6 = document.createElement('td')
+
+
+            td1.innerHTML = ++stdNo;
+            td2.innerHTML = name;
+            td3.innerHTML = roll;
+            td4.innerHTML = sec;
+            td5.innerHTML = '<div class="message">'+ gen +'</div>';
+            td6.innerHTML = '<button class="button">Reply</button>'
+
+            trow.appendChild(td1)
+            trow.appendChild(td2)
+            trow.appendChild(td3)
+            trow.appendChild(td4)
+            trow.appendChild(td5)
+            trow.appendChild(td6)
+
+            groupingOne.appendChild(trow);
+
+        }
+            function AddAllItemToTable(messageBox){
+                stdNo = 0;
+                groupingOne.innerHTML = '';
+                messageBox.forEach(element => {
+                    AddItemToTable(element.names,element.emails,element.phones,element.messages);
+                });
+            }
+       
+
+
+                import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+
+                const firebaseConfig = {
+				apiKey: "AIzaSyB1VHGNrwTmCiYhONPl8yE6GvwpZsQnLT4",
+				authDomain: "mydashboard-d0814.firebaseapp.com",
+				projectId: "mydashboard-d0814",
+				storageBucket: "mydashboard-d0814.appspot.com",
+				messagingSenderId: "282132150467",
+				appId: "1:282132150467:web:6a0982aff64acd6e6eca76"
+			  };
+
+                const app = initializeApp(firebaseConfig);
+
+                    import {
+                        getFirestore, doc, getDoc,getDocs, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField
+                    } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+
+
+                    const db = getFirestore();
+
+                    async function displayDataAtTheSameTime(){
+                        const querySnapshot = await getDocs(collection(db, 'clientMessage'));
+
+                        var messages = [];
+                        querySnapshot.forEach(doc =>{
+                            messages.push(doc.data());
+                        });
+                        AddAllItemToTable(messages);
+                    }
+                    window.onload = displayDataAtTheSameTime;
+
+
+
+    </script>
+</body>
+</html>

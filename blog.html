@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innocent Portfolio</title>
+    <!-- Link To CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/blogstyles.css">
+    <!-- Box Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <script>  
+
+      var attempt = 5; 
+
+function validate(){
+var name=document.getElementById("name").value; 
+var comment=document.getElementById("comment").value;
+var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+if(name == ""){
+  document.getElementById("wrongName").innerHTML = "This Field is Required";
+}
+else if(name.length<4){  
+document.getElementById("wrongName").innerHTML=  
+"name must Contain at least 4 Character";  
+} 
+else if(name.length>4){  
+document.getElementById("wrongName").innerHTML="";  
+} 
+else if(comment.length<3){  
+document.getElementById("wrongComment").innerHTML=  
+"This Field is required";  
+} 
+else{
+  alert("Comment Added Successfully");
+}
+}
+      </script> 
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header>
+        <a href="#" class="logo">Innocent</a>
+
+        <div class="bx bx-menu" id="menu-icon"></div>
+
+        <ul class="navbar">
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#skills">Skills</a></li>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="index.html#portfolio">Portfolio</a></li>
+            <li><a href="index.html#blog">Blog</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+           <!-- <li><a href="loginSignup.html">Admin</a></li>-->
+            <div class="bx bx-moon" id="darkmode"></div>
+        </ul>
+    </header>
+
+    <div class="content">
+        <div id="full-blog">
+          <div id="blog-body">
+            <div class="blog-presentries">
+              <label class="blog-category"></label>
+              <label class="blog-main-title">BLOG TITLE</label>
+              <div>
+                <label class="mehhh">BY</label>
+                <label class="blog-owner">InnocentMura</label>
+              </div>
+            </div>
+            <div class="blog-main-image">
+              <img src="blog00.jpg" alt="blog-img" />
+            </div>
+            <div class="blog-main-content">
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
+                exercitationem, officiis ratione optio aliquid beatae mollitia
+                omnis repellendus eum expedita molestiae, sunt non eligendi quo,
+                dolores a harum accusantium ipsa! Lorem ipsum dolor sit, amet
+                consectetur adipisicing elit. Iusto numquam aperiam, nam amet
+                reprehenderit obcaecati, tenetur ad error, odio itaque eligendi.
+                Aspernatur tempora voluptates earum quae excepturi, autem ipsa
+                nam.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
+                exercitationem, officiis ratione optio aliquid beatae mollitia
+                omnis repellendus eum expedita molestiae, sunt non eligendi quo,
+                dolores a harum accusantium ipsa! Lorem ipsum, dolor sit amet
+                consectetur adipisicing elit. Dolores perspiciatis officia, sunt
+                exercitationem laborum obcaecati? Vero, atque doloribus. Eos
+                expedita voluptas eveniet, ipsa debitis totam tempore inventore
+                ratione nostrum perspiciatis.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
+                exercitationem, officiis ratione optio aliquid beatae mollitia
+                omnis repellendus eum expedita molestiae, sunt non eligendi quo,
+                dolores a harum accusantium ipsa! Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. </p>
+                <p>
+                Vitae aliquam nisi, totam sit enim
+                consequuntur quasi tempora quisquam rem sed provident beatae
+                inventore nostrum mollitia accusamus fugiat ad nihil quas!
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
+                exercitationem, officiis ratione optio aliquid beatae mollitia
+                omnis repellendus eum expedita molestiae, sunt non eligendi quo,
+                dolores a harum accusantium ipsa! Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. 
+                quas.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
+                exercitationem, officiis ratione optio aliquid beatae mollitia
+                omnis repellendus eum expedita molestiae, sunt non eligendi quo,
+                dolores a harum accusantium ipsa! Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. 
+                </p>
+               <p> Vitae eveniet ipsum culpa
+                perferendis ad eaque soluta tenetur voluptatem porro et,
+                quisquam sunt nihil quam earum modi, quibusdam iusto doloribus
+                quas.
+              </p>
+            
+            </div>
+            <div class="blog-footer">
+              <label class="blog-owner">PUBLISHED ON JAN 12 2023</label>
+              <a href="#" class="like-btn">Like</a>
+            </div>
+            <div class="comment-section">
+              <label class="title-comment">JOIN THE DISCUSSION</label>
+              <label class="hint-comment">
+                Provide your comment on this Blog
+              </label>
+              <form id="form_id" name="myform" action="" onsubmit="return validateform()">
+                <input type="text" placeholder = 'Enter your name' name="name" id="name">
+                <label id="wrongName" style="color:red; font-style:italic;"></label> 
+                <textarea
+                  name="comment" 
+                  placeholder="Your comment..."
+                  name="comment" id="comment"></textarea>
+                  <label id="wrongComment" style="color:red; font-style:italic;"></label> 
+                <div>
+                  <label>Commenting as Aimable Mwizere</label>
+                  <input type="button" class="contact-button" value="POST" onclick="validate()" style="width: 80px; height: 40px;" name="submit" id="submit">
+                </div>
+              </form>
+              <div class="all-comments">
+                <label class="comments-count">3 Comments</label>
+                <div class="comment">
+                  <div class="commenter">
+                    <label class="commenter-name">Jonathan Mwizerwa</label>
+                    <div class="separator"></div>
+                    <label class="commenter-time">1 hour ago</label>
+                  </div>
+                  <div class="comment-body">
+                    <p>
+                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                      Dolorum inventore laboriosam unde perspiciatis officia
+                      nulla beatae laudantium totam!
+                    </p>
+                  </div>
+                  <a href="#" class="comment-likes">12 Likes</a>
+                </div>
+                <div class="line-separator"></div>
+
+                <div class="comment">
+                  <div class="commenter">
+                    <label class="commenter-name">Kanyana Ange</label>
+                    <div class="separator"></div>
+                    <label class="commenter-time">2 hours ago</label>
+                  </div>
+                  <div class="comment-body">
+                    <p>
+                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                      Dolorum inventore laboriosam unde perspiciatis officia
+                      nulla beatae laudantium totam!
+                    </p>
+                  </div>
+                  <a href="#" class="comment-likes">18 Likes</a>
+                </div>
+                <div class="line-separator"></div>
+
+                <div class="comment">
+                  <div class="commenter">
+                    <label class="commenter-name">Peter Green</label>
+                    <div class="separator"></div>
+                    <label class="commenter-time">5 days ago</label>
+                  </div>
+                  <div class="comment-body">
+                    <p>
+                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                      Dolorum inventore laboriosam unde perspiciatis officia
+                      nulla beatae laudantium totam!
+                    </p>
+                  </div>
+                  <a href="#" class="comment-likes">24 Likes</a>
+                </div>
+                <div class="line-separator"></div>
+              </div>
+            </div>
+          </div>
+          <div id="extra">
+            <label class="title-extra">Similar topics</label>
+            <div class="similar-blogs">
+              <div class="similar-topic">
+                <img src="blog-1.jpg" alt="blog-img" />
+                <label class="title-similar-topic">The blog title goes here</label>
+                <a href="#" class="link-similar-topic">READ MORE</a>
+              </div>
+              <div class="similar-topic">
+                <img src="blog-4.jpg" alt="blog-img" />
+                <label class="title-similar-topic">
+                  The blog title goes here</label>
+                <a href="#" class="link-similar-topic">READ MORE</a>
+              </div>
+              <div class="similar-topic">
+                <img src="blog0.JPG" alt="blog-img" />
+                <label class="title-similar-topic">The blog title goes here</label>
+                <a href="#" class="link-similar-topic">READ MORE</a>
+              </div>
+              <div class="similar-topic">
+                <img src="blog1.jpg" alt="blog-img" />
+                <label class="title-similar-topic"
+                  >The blog title goes here</label
+                >
+                <a href="#" class="link-similar-topic">READ MORE</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!----------------------------------------------------------------->
+      </div>
+    <!-- Footer -->
+    <div class="footer">
+        <h2>My Social Links</h2>
+        <div class="footer-social">
+            <a href="#"><i class='bx bxl-github'></i></a>
+            <a href="#"><i class='bx bxl-twitter'></i></a>
+            <a href="#"><i class='bx bxl-instagram'></i></a>
+            <a href="#"><i class='bx bxl-linkedin'></i></a>
+        </div>
+
+    </div>
+    <!-- Copyright -->
+    <div class="copyright">
+        <p>Create By <a href="">InnocentMura</a> | All Right Reserved.</p>
+    </div>
+
+
+
+    <!-- Link To JS -->
+    <script src="./js/script.js"></script>
+    <script src="js/loginScript.js"></script>
+</body>
+
+</html>

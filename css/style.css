@@ -152,7 +152,16 @@ header.shadow {
   gap: 1rem;
   margin-top: 2rem;
 }
- 
+.blog-img img {
+  margin-top: 10rem;
+  width: 80%;
+  border-radius: 0.5rem;
+}
+.blog-profile-img img {
+  width: 100px;
+  border-radius: 50%;
+  height: 100px;
+}
 .about-img img {
   width: 80%;
   border-radius: 0.5rem;
@@ -210,6 +219,7 @@ span {
   height: 0.5rem;
   background: hsla(260, 100%, 44%, 0.4);
   border-radius: 0.5rem;
+
 }
 .percent-bar {
   position: absolute;
@@ -218,6 +228,7 @@ span {
   height: 0.5rem;
   background: var(--main-color);
   border-radius: 0.5rem;
+  animation-timing-function: ease-in-out;
 }
 .html-bar {
   width: 94%;
@@ -262,7 +273,9 @@ span {
 .services-box:hover{
  background-color: #02225a;
 }
-
+.services-box:hover p {
+  color: rgb(255, 255, 255);
+}
 .services-box h3 {
   font-size: 1rem;
   font-weight: 600;
@@ -310,14 +323,24 @@ span {
   place-items: center;
   margin-top: 2rem;
 }
+.contact-form1 {
+  display: grid;
+  place-items: center;
+  margin-top: 2rem;
+}
 .contact-form form {
   display: flex;
   flex-direction: column;
   width: 650px;
 }
+.contact-form1 form {
+  display: flex;
+  flex-direction: column;
+  width: 450px;
+}
 form input,
 textarea {
-  padding: 15px;
+  padding: 10px;
   border-radius: 0.5rem;
   width: 100%;
   border: none;
@@ -347,6 +370,7 @@ form textarea {
 .contact-button:hover {
   background: var(--hover);
 }
+
 .footer {
   display: grid;
   place-items: center;
@@ -378,7 +402,8 @@ form textarea {
 .copyright a{
   color: #22cf91;
 }
-/* Making Responsive */
+
+/*==== Making Responsive ===*/
 @media (max-width: 991px) {
   header {
     padding: 18px 4%;
@@ -392,6 +417,9 @@ form textarea {
     --big-font: 2.7rem;
     --medium-font: 1.4rem;
   }
+  .header{
+    width: 100%;
+  }
 }
 @media (max-width: 768px) {
   :root {
@@ -401,9 +429,14 @@ form textarea {
   header {
     padding: 11px 4%;
   }
+  img,
+picture,
+video {
+  max-width: 100%;
+}
   #menu-icon {
     display: initial;
-    color: var(--text-color);
+    color: var(--main-color);
   }
   header .navbar {
     position: absolute;
@@ -492,4 +525,31 @@ form textarea {
   .contact-button{
     margin-left: 25%;
   }
+}
+
+@media only screen and (min-device-width: 480px){
+  :root {
+    --big-font: 1.7rem;
+    --medium-font: 1.1rem;
+  }
+  .home-text span {
+    font-size: 1rem;
+  }
+  .home-text h2 {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  .information .info-box span {
+    font-size: 1rem;
+  }
+  .portfolio-content {
+    grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+  }
+  .contact-form form{
+    width: 300px;
+  }
+  .contact-button{
+    margin-left: 25%;
+  }
+
 }

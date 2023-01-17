@@ -5,23 +5,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
     <title>My Dashboard</title>
    
     <link rel="stylesheet" href="css/mydash.css">
     <link rel="stylesheet" href="css/blog_list.css">
-    <link rel="stylesheet"
-    href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-  
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet"
-    href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-
-    <script src="https://kit.fontawesome.com/c6d6e74636.js" crossorigin="anonymous"></script>
     <!-- <script src="js/scriptdashboard.js"></script> -->
-    
+    <!-- include libraries(jQuery, bootstrap) -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<!-- include summernote css/js -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
 </head>
 <body>
     <div class="main-dash-container">
@@ -37,10 +34,10 @@
         <div class="body-divs">
             <div class="side-nav" id="sidenav"> 
              
-                <div class="side-title"><p>Menu</p></div>
-                <ul class="navList">
+                <div class="side-title"> <p><a href="index.html" style="color: white; text-decoration:none;"> Menu</a></p></div>
+                <ul class="navList"> 
                     <li>Home</li>
-                    <li><a href="index.html#blog">Blogs</a></li>
+                    <li><a href="blogList.html">Blogs</a></li>
                     <li><a href="message.html">Message</a></li>
                     <li>Notification</li>
                 </ul>
@@ -49,92 +46,39 @@
       
 <center>
 
-<div class="form" id="formBlogs">
+<div class="form" id="formBlogs" style="width: 120%;">
 
   <label class="ablog">Add a new Blog</label>
       <table border="0"><tr><td>
       <label>Title: </label></td><td><input type="text" placeholder="Enter a blog title" name="title" id="title" 
         class="inputtext" onkeyup="validateTitle()"></td></tr>
        <tr><td class="hidden"></td><td height="0.2" class="hidden"><span id="titleerror"></span></td></tr> 
-      <!-- <tr><td><label>Picture</label> </td><td><input type="file" name="picture"  class="input-file"></td></tr> -->
-      <tr><td><label>Author</label> </td><td><input type="text" name="author" class="inputtext" id="author"
-         placeholder="Author name... " onkeyup="validateAuthor()"></td></tr>
-        <tr><td></td><td><span id="authorerror"></span></td></tr> 
-      <tr><td><label>Descrption</label></td><td><textarea cols="24" rows="5" class="inputtext" 
-        onkeyup="validateDescription()"
-         placeholder="Write your Descrption of th blog here...." id="blogcontent" name="content"></textarea></td></tr>
-        <tr><td></td><td><span id="descriptionerror"></span></td></tr> 
       
+       <tr><td>
+        <label>Image: </label></td><td><input type="file" placeholder="Enter a blog title" 
+          class="inputtext" onkeyup="validateTitle()"></td></tr>
+         <tr><td class="hidden"></td><td height="0.2" class="hidden"><span id="titleerror"></span></td></tr> 
+      
+        <tr><td><label>Description</label></td><td><textarea id="summernote" name="editordata" 
+          onkeyup="validateDescription()"></textarea></td></tr>
+            <tr><td></td><td><span id="descriptionerror"></span></td></tr> 
 </table>
+
   <br/>
       <!-- <button type="button" class="sendbutton">Post</button> -->
       <button type="submit" class="sendbutton" id="postButton" onclick="return validateForm()">Create a Blog</button>
       <!-- <input type="button" value="reset" name="reset" id="reset"> -->
     
-  
+      <script>
+        $(document).ready(function() {
+            $('#summernote').summernote();
+        });
+      </script>
     </div> 
  
-<br/><br/>
-<!-- 
-<div class="allBlogs">
-  <div class="gallery">
-      <img src="images/icons/flutter.png" alt="Flutter" width="600" height="400">
-
-    <div class="desc">Flutter</div>
-    <div class="descrption"> Flutter is framework for Mobile Application development Flutter is an open-source UI ...<img src="images/icons/more.jpg" id="more"></div>
-    
-    <div class="options"><table border="0">
-
-      <tr><td><img src="images/icons/edit.png" id="edit"></td><td><img src="images/icons/delete1.png" id="delete"><td></tr>
-      
-          </table></div>
-  
-  </div>
-  
-  <div class="gallery">
- 
-      <img src="images/icons/dart.png" alt="Dart" width="600" height="400">
-
-    <div class="desc">Dart</div>
-    <div class="descrption"> Dart is a programming language designed for client development..<img src="images/icons/more.jpg" id="more"></div>
-    
-    <div class="options"><table border="0">
-
-<tr><td><img src="images/icons/edit.png" id="edit"></td><td><img src="images/icons/delete1.png" id="delete"></td></tr>
-
-    </table></div>
-  </div>
-  
-  <div class="gallery">
-
-      <img src="images/icons/cyber.png" alt="CyberSecurity" width="600" height="400">
-
-    <div class="desc">CyberSecurity</div>
-    <div class="decrption"> Computer security, cybersecurity, 
-      or information technology.........
-      <img src="images/icons/more.jpg" id="more"></div>
-
-      <div class="options">
-
-        <tr><td><img src="images/icons/edit.png" id="edit" height="20" width="20"></td><td><img src="images/icons/delete1.png" id="delete"></td></tr>
-        
-            </table></div>
-  </div>
-</div> -->
-
-
 
 <div class="blog-container" id="blog">
   
-  <div class="blog-container" id="blog">
-
-    <div class="blogs-container">
-       <center>
-
-        <a href="index.html" style="text-decoration: none; color:blue;font-family: inter;"> Back to user's page</a></label>
-    </div> </center> 
-  <br>
-</div>
   <div id="blog-list" class="blog-list">
       <template id="blog-template">
           <div class="blog">
@@ -197,7 +141,6 @@
 			  const db = getFirestore();
     
   let NameBox = document.getElementById("title");
-	  let RollBox = document.getElementById("author");
 	  let SecBox = document.getElementById("blogcontent");
 	 
 	
@@ -222,59 +165,7 @@
 		console.log('document id is: '+ docRef.id);
 	}
 	insBtn.addEventListener('click', sendMessage);
-		
-
-
-
-
-//   var numbering = 0;
-//   var groupingToTable = document.getElementById('bodyOne');
-
-//   function AddItemToTable(title, author,description){
-//       let trow = document.createElement('tr')
-//       let td1 = document.createElement('td')
-//       let td2 = document.createElement('td')
-//       let td3 = document.createElement('td')
-//       let td4 = document.createElement('td')
-
-
-//       td1.innerHTML = ++numbering;
-//       td2.innerHTML = title;
-//       td3.innerHTML = author;
-//       td4.innerHTML = description;
-
-
-//       trow.appendChild(td1)
-//       trow.appendChild(td2)
-//       trow.appendChild(td3)
-//       trow.appendChild(td4)
-
-
-//       groupingToTable.appendChild(trow);
-
-//   }
-//       function AddAllItems(messageBox){
-//         numbering = 0;
-//         groupingToTable.innerHTML = '';
-//           messageBox.forEach(element => {
-//               AddItemToTable(element.title,element.author,element.phones,element.messages);
-//           });
-//       }
- 
-    
-// const db1 = getFirestore();
-
-//               async function displayDataAtTheSameTime(){
-//                   const querySnapshot = await getDocs(collection(db1, 'myBlogs'));
-
-//                   var messages = [];
-//                   querySnapshot.forEach(doc =>{
-//                       messages.push(doc.data());
-//                   });
-//                   AddAllItems(messages);
-//               }
-//               window.onload = displayDataAtTheSameTime;
-
+	
 </script>
 
 

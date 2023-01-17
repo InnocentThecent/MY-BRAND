@@ -11,29 +11,89 @@
                 
         <!-- Boxicons CSS -->
         <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-                        
+        
+        <!--  FORM VALIDATION-->      
+        <script>  
+
+            var attempt = 5; 
+      
+function validate(){
+var username = document.getElementById("username").value;
+var password = document.getElementById("password").value;
+var x=document.getElementById("username").value;  
+var atposition=x.indexOf("@");  
+var dotposition=x.lastIndexOf(".");  
+var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+if(username=="" && password=="")
+{
+    document.getElementById("falseEmail").innerHTML="Email field is required";
+    document.getElementById("falsePassword").innerHTML="Password field is required";
+}
+else if(username==""){
+document.getElementById("falseEmail").innerHTML="Fill the Email field";
+}
+else if (atposition<1 || dotposition<atposition+2 || dotposition+2>=x.length){  
+ // alert("");  
+  document.getElementById("falseEmail").innerHTML="Please enter a valid e-mail address";
+  document.getElementById("falsePassword").innerHTML="";
+  return false;  
+  } 
+else if(password=="")
+{
+    document.getElementById("falsePassword").innerHTML="Fill the Password field";  
+}
+else if(password.length<6){
+    document.getElementById("falsePassword").innerHTML="Password Length must be atleast 6 character";
+}
+else
+{
+if ( username == "muragijimanainnocent3@gmail.com" && password == "123456"){
+    alert("Login Successfully");
+window.location = "Dashboard.html";
+return false;
+}
+else{
+attempt --;
+// alert("You have left "+attempt+" attempts to try If your Attempst Finishes You will be blocked from writing anything;");
+document.getElementById("attemptRemain").innerHTML="Your credentials are incorrect. You remain "+attempt+ " attempts to try"
+
+if( attempt == 0){
+document.getElementById("username").disabled = true;
+document.getElementById("password").disabled = true;
+document.getElementById("submit").disabled = true;
+return false;
+}
+}
+}
+}
+
+           
+
+            </script>  
+
     </head>
     <body>
         <section class="container forms">
             <div class="form login">
                 <div class="form-content">
                     <header>Login</header>
-                    <form action="Dashboard.html">
+                    <form id="form_id" name="myform" action="" onsubmit="return validateform()">
+                        <label id="attemptRemain" style="color:red; font-style:italic;"></label>
                         <div class="field input-field">
-                            <input type="email" placeholder="Email" class="input">
+                            <input type="email" placeholder="Email" class="input" name="username" id="username">
                         </div>
-
+                        <label id="falseEmail" style="color:red; font-style:italic;"></label>  
                         <div class="field input-field">
-                            <input type="password" placeholder="Password" class="password">
+                            <input type="password" placeholder="Password" class="password" name="password" id="password">
                             <i class='bx bx-hide eye-icon'></i>
                         </div>
-
+                        <label id="falsePassword" style="color:red; font-style:italic;"></label>  
                         <div class="form-link">
                             <a href="#" class="forgot-pass">Forgot password?</a>
                         </div>
 
                         <div class="field button-field">
-                            <a href="Dashboard.html"></a><button>Login</button></a>
+                            <input type="button" class="action-button"  value="Login" id="submit" onclick="validate()">
                         </div>
                     </form>
 
