@@ -9,17 +9,17 @@
     <title>My Blogs</title>
    
     <link rel="stylesheet" href="css/mydash.css">
-    <link rel="stylesheet" href="css/blog_list.css">
     <link rel="stylesheet"
     href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
   
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet"
+    href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 
     <script src="https://kit.fontawesome.com/c6d6e74636.js" crossorigin="anonymous"></script>
-    <script src="js/scriptdashboard.js"></script>
+    <script src="js/blog_create.js"></script>
 </head>
 <body>
     <div class="main-dash-container">
@@ -37,10 +37,10 @@
              
                 <div class="side-title"><p>Menu</p></div>
                 <ul class="navList">
-                    <li><a href="Dashboard.html">Home</a></li>
-                    <li><a href="blogList.html">Blog</a></li>
-                    <li><a href="message.html">Message</a></li>
-                    <li><a href="#">Notification</a></li>
+                    <li><a href="Dashboard.html"></a>Home</li>
+                    <li><a href="myBlogs.html"></a>Blog</li>
+                    <li><a href="message.html">Message</a></li> 
+                    <li>Notification</li>
                 </ul>
                 
             </div>
@@ -48,11 +48,8 @@
 <center><br><br/>
  <label>Your Brogs....</label>
 <div class="form"><br>
- 
-     
     </div> 
 
- 
 <br/>
 
 <div class="blog-container" id="blog">
@@ -62,53 +59,31 @@
                     <thead>
                         <th>No</th>
                         <th>Title</th>
+                        <th>Image</th>
                         <th>Description</th>
-                        <th rowspan="2"></th>
-                        
                     </thead>
-                    <tr>
-                      <td>1</td>
-                      <td>Dart</td>
-                      <td>DescriptionDart is a programming language designed for client development, 
-                        such as for the web and mobile apps. It is developed by Google and can also be used to build 
-                        server and desktop applications. It is an object-oriented, class-based, garbage-collected language
-                         with C-style syntax</td>
-                         <td>
-                          <button><img src="images/editicon.png" class="icons"></button></td>
-                          <td><button><img src="images/deleteicon.png" class="icons"></button>
-                        </td>
-                        </tr>
-                        <tr>
-                          <td>2</td>
-                          <td>Programming</td>
-                          <td>Computer programming is the process of telling a computer to do certain things by giving it instructions.
-                             These instructions are called programs. A person who writes instructions is 
-                            a computer programmer. The instructions come in different languages; they are called programming languages.</td>
-                             <td>
-                              <button><img src="images/editicon.png" class="icons"></button></td>
-                              <td><button><img src="images/deleteicon.png" class="icons"></button>
-                            </td>
-                            </tr>
-                            <tr>
-                              <td>3</td>
-                              <td>JS</td>
-                              <td>
-                                JavaScript (JS) is a lightweight, interpreted, or just-in-time compiled programming language with first-class functions. 
-                                While it is most well-known as the scripting language for Web pages,
-                                 many non-browser environments also use it, such as Node.js, Apache CouchDB and Adobe Acrobat.
-                              </td>
-                                 <td>
-                                  <button><img src="images/editicon.png" class="icons"></button></td>
-                                  <td><button><img src="images/deleteicon.png" class="icons"></button>
-                                </td>
-                                </tr>
+                    <p id="localstorageOutput"></p>
+                    <script>
+                        for(let i = 0; i<localStorage.length; i++){
+  const title = localStorage.key(i);
+  let no = 1;
+  const description = localStorage.getItem(title);
+  const localstorageOutput = document.getElementById("")
+  table.innerHTML += `<table><tr><td>${no+=i}</td><td>${title}</td><td></td> <td> ${description} </td></tr><table>`;
+}
+                    </script>
                 </table>
-            
-            
+                <script>
+                    
+                </script>
         </div>
     </div> 
   <br>
-</div>
+</div><center>
+  <a href="Dashboard.html" style="text-decoration: none; color:blue;font-family: inter;"> Back</a></label></center>
+<br/>
+
+<br/>
 
             </div>
         </div>

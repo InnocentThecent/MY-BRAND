@@ -30,18 +30,18 @@ function validateAuthor(){
 
 function validateDescription(){
     var name=document.getElementById('blogcontent').value;
-    if(name.length == 0){
+    if(summernote.length == 0){
         descriptionerror.innerHTML = 'Description is required';
         return false;
     }
-    if(name.length<10){
+    if(summernote.length<10){
         descriptionerror.innerHTML = 'Provides more characters';
         return false;
     }
     descriptionerror.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
     return true;
 }
-
+  
 function validateForm(){
     if(!validateTitle() || !validateDescription()){
         descriptionerror.innerHTML = 'Please fill all before press Submit button';

@@ -47,8 +47,9 @@ else if(password.length<6){
 }
 else
 {
-if ( username == "muragijimanainnocent3@gmail.com" && password == "123456"){
-    alert("Login Successfully");
+if ( username == "muragijimanainnocent3@gmail.com" && password == "123456")
+{ 
+    document.getElementById("attemptRemain").innerHTML="Login Successfully";
 window.location = "Dashboard.html";
 return false;
 }
@@ -127,20 +128,20 @@ return false;
                     <header>Signup</header>
                     <form action="#">
                         <div class="field input-field">
-                            <input type="email" placeholder="Email" class="input">
+                            <input type="email" placeholder="Email" class="input" id="email">
                         </div>
 
                         <div class="field input-field">
-                            <input type="password" placeholder="Create password" class="password">
+                            <input type="password" placeholder="Create password" class="password" id="password">
                         </div>
 
                         <div class="field input-field">
-                            <input type="password" placeholder="Confirm password" class="password">
+                            <input type="password" placeholder="Confirm password" class="password" id="cPassword">
                             <i class='bx bx-hide eye-icon'></i>
                         </div>
 
                         <div class="field button-field">
-                            <button>Signup</button>
+                            <button id="btnSignup">Signup</button>
                         </div>
                     </form>
 
@@ -167,8 +168,40 @@ return false;
 
             </div>
         </section>
-
+<div id="localstorageOutput"></div>
         <!-- JavaScript -->
+         
+      <script>
+       
+        const email = document.getElementById("email");
+        const password = document.getElementById("password");
+        const cPassword = document.getElementById("cPassword");
+        const btnSignup = document.getElementById("btnSignup");
+const localstorageOutput = document.getElementById("localstorageOutput");
+
+btnSignup.onclick = function(){
+  const email = email.value;
+  const password = password.value;
+  const cPassword = cPassword.value;
+  console.log(email);
+  console.log(password);
+
+    if(email && password && cPassword){
+      localStorage.setItem(email, password, cPassword);
+     // location.reload();
+
+    }
+};
+
+for(let a = 0; a<localStorage.length; a++){ 
+  const email = localStorage.key(a);
+  const password = localStorage.getItem(email);   
+  const cPassword = localStorage.getItem(email);
+
+  localstorageOutput.innerHTML += `${email}<br> ${password} <br/> ${cPassword}`;
+ // table.innerHTML += `<table><tr><td>${no+=i}</td><td>${title}</td><td></td> <td> ${description} </td></tr><table>`;
+}
+      </script>
         <script src="js/formscript.js"></script>
     </body>
 </html>

@@ -29,12 +29,16 @@ document.getElementById("wrongName").innerHTML=
 else if(name.length>4){  
 document.getElementById("wrongName").innerHTML="";  
 } 
-else if(comment.length<3){  
+if(comment.length<10){
 document.getElementById("wrongComment").innerHTML=  
-"This Field is required";  
-} 
+"message must Contain at least 10 Character";
+}
+
 else{
-  alert("Comment Added Successfully");
+  document.getElementById("formMessage").innerHTML=  
+"Blog Added Successfully";
+document.getElementById("wrongComment").innerHTML=  
+"";
 }
 }
       </script> 
@@ -65,7 +69,7 @@ else{
           <div id="blog-body">
             <div class="blog-presentries">
               <label class="blog-category"></label>
-              <label class="blog-main-title">BLOG TITLE</label>
+              <label class="blog-main-title" id="blogTitle">BLOG TITLE</label>
               <div>
                 <label class="mehhh">BY</label>
                 <label class="blog-owner">InnocentMura</label>
@@ -75,45 +79,18 @@ else{
               <img src="blog00.jpg" alt="blog-img" />
             </div>
             <div class="blog-main-content">
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
-                exercitationem, officiis ratione optio aliquid beatae mollitia
-                omnis repellendus eum expedita molestiae, sunt non eligendi quo,
-                dolores a harum accusantium ipsa! Lorem ipsum dolor sit, amet
-                consectetur adipisicing elit. Iusto numquam aperiam, nam amet
-                reprehenderit obcaecati, tenetur ad error, odio itaque eligendi.
-                Aspernatur tempora voluptates earum quae excepturi, autem ipsa
-                nam.
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
-                exercitationem, officiis ratione optio aliquid beatae mollitia
-                omnis repellendus eum expedita molestiae, sunt non eligendi quo,
-                dolores a harum accusantium ipsa! Lorem ipsum, dolor sit amet
-                consectetur adipisicing elit. Dolores perspiciatis officia, sunt
-                exercitationem laborum obcaecati? Vero, atque doloribus. Eos
-                expedita voluptas eveniet, ipsa debitis totam tempore inventore
-                ratione nostrum perspiciatis.
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
-                exercitationem, officiis ratione optio aliquid beatae mollitia
-                omnis repellendus eum expedita molestiae, sunt non eligendi quo,
-                dolores a harum accusantium ipsa! Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. </p>
-                <p>
-                Vitae aliquam nisi, totam sit enim
-                consequuntur quasi tempora quisquam rem sed provident beatae
-                inventore nostrum mollitia accusamus fugiat ad nihil quas!
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
-                exercitationem, officiis ratione optio aliquid beatae mollitia
-                omnis repellendus eum expedita molestiae, sunt non eligendi quo,
-                dolores a harum accusantium ipsa! Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. 
-                quas.
-              </p>
+              <p id="blogdescription"></p>
+                <script>
+                  for(let i = 0; i<localStorage.length; i++){
+const title = localStorage.key(i);
+let no = 1;
+const description = localStorage.getItem(title);
+blogdescription.innerHTML = `${description}`;
+blogTitle.innerHTML = `${title}`;
+}
+              </script>
+              
+              
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
                 exercitationem, officiis ratione optio aliquid beatae mollitia
@@ -138,6 +115,7 @@ else{
                 Provide your comment on this Blog
               </label>
               <form id="form_id" name="myform" action="" onsubmit="return validateform()">
+                <label id="formMessage" style="color:green; font-weight: bold; border: 2;"></label> 
                 <input type="text" placeholder = 'Enter your name' name="name" id="name">
                 <label id="wrongName" style="color:red; font-style:italic;"></label> 
                 <textarea

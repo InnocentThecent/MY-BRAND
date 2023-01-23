@@ -18,6 +18,9 @@ function validate(){
 var username = document.getElementById("username").value;
 var name=document.getElementById("name").value;
 var message=document.getElementById("message").value;
+var x=document.getElementById("username").value;  
+var atposition=x.indexOf("@");  
+var dotposition=x.lastIndexOf("."); 
 var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 if(name == ""){
     document.getElementById("wrongName").innerHTML = "This Field is Required";
@@ -32,21 +35,26 @@ if(username == ""){
 document.getElementById("falseEmail").innerHTML="Email field cannot be empty";
 }
 if (atposition<1 || dotposition<atposition+2 || dotposition+2>=x.length){  
- // alert("");  
   document.getElementById("falseEmail").innerHTML="Please enter a valid e-mail address";
   return false;  
   } 
-if(message.length<10){  
-document.getElementById("wrongMessage").innerHTML=  
+  else if(username.length>4){  
+document.getElementById("falseEmail").innerHTML="";  
+} 
+if(message.length<10){
+document.getElementById("messageError").innerHTML=  
 "message must Contain at least 10 Character";
 document.getElementById("falseEmail").innerHTML="";
-} 
+}
 
 else{
-    alert("Blog Added Successfully");
+document.getElementById("messageError").innerHTML=  
+"";
+document.getElementById("formMessage").innerHTML=  
+"Message Sent Successfully";
 }
 }
-        </script>  
+        </script>   
 </head>
 
 <body>
@@ -58,7 +66,7 @@ else{
 
         <ul class="navbar">
             <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
+            <li><a href="#about">About</a></li> 
             <li><a href="#skills">Skills</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#portfolio">Portfolio</a></li>
@@ -326,12 +334,13 @@ else{
         </div>
         <div class="contact-form">
             <form id="form_id" name="myform" action="" onsubmit="return validateform()">
+                <label id="formMessage" style="color:green; font-weight: bold; border: 2;"></label> 
                 <input type="text" placeholder="Your Name" name="name" id="name">
                 <label id="wrongName" style="color:red; font-style:italic;"></label> 
                 <input type="email" placeholder="Your Email" class="input" name="username" id="username">
                 <label id="falseEmail" style="color:red; font-style:italic;"></label> 
                 <textarea cols="30" rows="10" placeholder="Write Message Here..." name="message" id="message"></textarea>
-                <label id="wrongMessage" style="color:red; font-style:italic;"></label> 
+                <label id="messageError" style="color:red; font-style:italic;"></label> 
                 <input type="button" class="contact-button" value="SEND" name="submit" id="submit" onclick="validate()">
             </form>
         </div>
