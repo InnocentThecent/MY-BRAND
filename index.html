@@ -14,7 +14,8 @@
 
         var attempt = 5; 
   
-function validate(){
+function validate()
+{
 var username = document.getElementById("username").value;
 var name=document.getElementById("name").value;
 var message=document.getElementById("message").value;
@@ -344,7 +345,28 @@ document.getElementById("formMessage").innerHTML=
                 <input type="button" class="contact-button" value="SEND" name="submit" id="submit" onclick="validate()">
             </form>
         </div>
-
+        <script>    
+            const yourName = document.getElementById("name");
+            const yourEmail = document.getElementById("username");
+            const msg = document.getElementById('message')
+            const btnSubmit = document.getElementById("submit");
+    //const localstorageOutput = document.getElementById("localstorageOutput");
+    
+    btnSubmit.onclick = function(){
+      const yourNameValue = yourName.value;
+      const  yourEmailValue = yourEmail.value;
+      const msgValue = msg.value;
+    
+    
+        if(yourNameValue && yourEmailValue && msgValue){
+          localStorage.setItem(yourNameValue, yourEmailValue, msgValue);
+          //location.reload();
+          console.log(yourEmailValue);
+    console.log(yourNameValue);
+    console.log(msgValue);
+        }
+    };
+          </script>
     </section>
     <!-- Footer -->
     <div class="footer">
@@ -366,8 +388,6 @@ document.getElementById("formMessage").innerHTML=
 
     <!-- Link To JS -->
     <script src="./js/script.js"></script>
-    <script src="js/loginScript.js"></script>
-    <script src="bg-script.js"></script>
     
     
 </body>

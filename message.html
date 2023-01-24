@@ -9,7 +9,7 @@
     <title>My message</title>
    
     <link rel="stylesheet" href="css/mydash.css">
-    <link rel="stylesheet" href="css/blog_list.css">
+    <link rel="stylesheet" href="css/blogstyles.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet"
     href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
@@ -69,8 +69,18 @@
                         <th>Names</th>
                         <th>Email</th>
                         <th class="th">message content</th>
-                        <th></th>
                     </thead>
+                    <p id="localstorageOutput"></p>
+                    <script>
+                        for(let a = 0; a<localStorage.length; a++){
+  const name = localStorage.key(a);
+  let no = 1;
+  const email = localStorage.getItem(name);
+  const msg = localStorage.getItem(name);
+  const localstorageOutput = document.getElementById("")
+  table.innerHTML += `<table><tr><td>${no+=a}</td><td>${name}</td><td>${email}</td> <td> ${msg} </td></tr><table>`;
+}
+                    </script>
                     <tr>
                         <td>1</td>
                         <td>Ange</td>
@@ -99,83 +109,5 @@
         </div>
        
     </div>
-
-
-    <script type="module">
-
-        var stdNo = 0;
-        var groupingOne = document.getElementById('bodyOne');
-
-        function AddItemToTable(name, roll, sec, gen){
-            let trow = document.createElement('tr')
-            let td1 = document.createElement('td')
-            let td2 = document.createElement('td')
-            let td3 = document.createElement('td')
-            let td4 = document.createElement('td')
-            let td5 = document.createElement('td')
-            let td6 = document.createElement('td')
-
-
-            td1.innerHTML = ++stdNo;
-            td2.innerHTML = name;
-            td3.innerHTML = roll;
-            td4.innerHTML = sec;
-            td5.innerHTML = '<div class="message">'+ gen +'</div>';
-            td6.innerHTML = '<button class="button">Reply</button>'
-
-            trow.appendChild(td1)
-            trow.appendChild(td2)
-            trow.appendChild(td3)
-            trow.appendChild(td4)
-            trow.appendChild(td5)
-            trow.appendChild(td6)
-
-            groupingOne.appendChild(trow);
-
-        }
-            function AddAllItemToTable(messageBox){
-                stdNo = 0;
-                groupingOne.innerHTML = '';
-                messageBox.forEach(element => {
-                    AddItemToTable(element.names,element.emails,element.phones,element.messages);
-                });
-            }
-       
-
-
-                import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-
-                const firebaseConfig = {
-				apiKey: "AIzaSyB1VHGNrwTmCiYhONPl8yE6GvwpZsQnLT4",
-				authDomain: "mydashboard-d0814.firebaseapp.com",
-				projectId: "mydashboard-d0814",
-				storageBucket: "mydashboard-d0814.appspot.com",
-				messagingSenderId: "282132150467",
-				appId: "1:282132150467:web:6a0982aff64acd6e6eca76"
-			  };
-
-                const app = initializeApp(firebaseConfig);
-
-                    import {
-                        getFirestore, doc, getDoc,getDocs, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField
-                    } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
-
-
-                    const db = getFirestore();
-
-                    async function displayDataAtTheSameTime(){
-                        const querySnapshot = await getDocs(collection(db, 'clientMessage'));
-
-                        var messages = [];
-                        querySnapshot.forEach(doc =>{
-                            messages.push(doc.data());
-                        });
-                        AddAllItemToTable(messages);
-                    }
-                    window.onload = displayDataAtTheSameTime;
-
-
-
-    </script>
 </body>
 </html>

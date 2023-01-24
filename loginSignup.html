@@ -132,7 +132,8 @@ return false;
                         </div>
 
                         <div class="field input-field">
-                            <input type="password" placeholder="Create password" class="password" id="password">
+                            <input type="password" placeholder="Create password" class="password" id="apassword">
+                           
                         </div>
 
                         <div class="field input-field">
@@ -174,33 +175,22 @@ return false;
       <script>
        
         const email = document.getElementById("email");
-        const password = document.getElementById("password");
+        const password = document.getElementById("apassword");
         const cPassword = document.getElementById("cPassword");
         const btnSignup = document.getElementById("btnSignup");
 const localstorageOutput = document.getElementById("localstorageOutput");
 
 btnSignup.onclick = function(){
-  const email = email.value;
-  const password = password.value;
-  const cPassword = cPassword.value;
-  console.log(email);
-  console.log(password);
+  const emailValue = email.value;
+  const passwordValue = password.value;
+  const cPasswordValue = cPassword.value;
 
-    if(email && password && cPassword){
-      localStorage.setItem(email, password, cPassword);
-     // location.reload();
-
+    if(emailValue && passwordValue && cPasswordValue){
+      localStorage.setItem(emailValue, passwordValue, cPasswordValue);
+     location.reload();
     }
 };
 
-for(let a = 0; a<localStorage.length; a++){ 
-  const email = localStorage.key(a);
-  const password = localStorage.getItem(email);   
-  const cPassword = localStorage.getItem(email);
-
-  localstorageOutput.innerHTML += `${email}<br> ${password} <br/> ${cPassword}`;
- // table.innerHTML += `<table><tr><td>${no+=i}</td><td>${title}</td><td></td> <td> ${description} </td></tr><table>`;
-}
       </script>
         <script src="js/formscript.js"></script>
     </body>
