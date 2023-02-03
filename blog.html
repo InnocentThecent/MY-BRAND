@@ -69,7 +69,7 @@ document.getElementById("wrongComment").innerHTML=
           <div id="blog-body">
             <div class="blog-presentries">
               <label class="blog-category"></label>
-              <label class="blog-main-title" id="blogTitle">BLOG TITLE</label>
+              <label class="blog-main-title">TITLE: <span class="blog-main-title" id="blogTitle"></span></label>
               <div>
                 <label class="mehhh">BY</label>
                 <label class="blog-owner">InnocentMura</label>
@@ -78,26 +78,8 @@ document.getElementById("wrongComment").innerHTML=
             <div class="blog-main-image">
               <img src="blog00.jpg" alt="blog-img" />
             </div>
-            <div class="blog-main-content">
-              <p id="blogdescription"></p>
-                <script>
-                  for(let i = 0; i<localStorage.length; i++){
-const title = localStorage.key(i);
-let no = 1;
-const description = localStorage.getItem(title);
-blogdescription.innerHTML = `${description}`;
-blogTitle.innerHTML = `${title}`;
-}
-              </script>
-              
-              
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
-                exercitationem, officiis ratione optio aliquid beatae mollitia
-                omnis repellendus eum expedita molestiae, sunt non eligendi quo,
-                dolores a harum accusantium ipsa! Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. 
-                </p>
+            <div class="blog-main-content" id="blogdescription">            
+           
                <p> Vitae eveniet ipsum culpa
                 perferendis ad eaque soluta tenetur voluptatem porro et,
                 quisquam sunt nihil quam earum modi, quibusdam iusto doloribus
@@ -125,10 +107,10 @@ blogTitle.innerHTML = `${title}`;
                   <label id="wrongComment" style="color:red; font-style:italic;"></label> 
                 <div>
                   <label>Commenting as Aimable Mwizere</label>
-                  <input type="button" class="contact-button" value="POST" onclick="validate()" style="width: 80px; height: 40px;" name="submit" id="submit">
+                  <input type="button" class="contact-button" value="POST" style="width: 80px; height: 40px;" name="submit" id="submit">
                 </div>
               </form>
-              <div class="all-comments">
+              <div class="all-comments" id="allComments">
                 <label class="comments-count">3 Comments</label>
                 <div class="comment">
                   <div class="commenter">
@@ -163,52 +145,77 @@ blogTitle.innerHTML = `${title}`;
                   <a href="#" class="comment-likes">18 Likes</a>
                 </div>
                 <div class="line-separator"></div>
+ 
+                <script>
+                
+                document.getElementById('submit').addEventListener('click', function(){
+                var yourName=document.getElementById("name").value.trim();
+                var yourComment = document.getElementById("comment").value.trim();
+                console.log(yourName);
+                var comment={
+                name:yourName,
+                comment:yourComment,
+                };
+                console.log(comment);
+                var comments;
+              //  if(validate()){
+                
+                if(localStorage.getItem("comments")){
+                comments=JSON.parse(localStorage.getItem("comments"));
+                comments.push(comment);
+                }
+                else{
+                comments=[];
+                comments.push(comment);
+                }
+                localStorage.setItem("comments",JSON.stringify(comments));
+                //location.reload();
+                 }  //}
+                );
+                
+                </script>
+                <script>
 
-                <div class="comment">
+                  function fetchComment(){
+                   var blogtable=document.getElementById("View");
+                   var comments=JSON.parse(localStorage.getItem("comments"));
+                   for(var i = 0; i < comments.length; i++){
+                    var yourName = comments[i].name;
+                    var yourComment = comments[i].comment;
+       
+                    if(comments){
+            
+                      allComments.innerHTML += `<div class="comment">
                   <div class="commenter">
-                    <label class="commenter-name">Peter Green</label>
+                    <label class="commenter-name">${yourName}</label>
                     <div class="separator"></div>
                     <label class="commenter-time">5 days ago</label>
                   </div>
                   <div class="comment-body">
                     <p>
-                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                      Dolorum inventore laboriosam unde perspiciatis officia
-                      nulla beatae laudantium totam!
+                      ${yourComment}
                     </p>
                   </div>
                   <a href="#" class="comment-likes">24 Likes</a>
-                </div>
-                <div class="line-separator"></div>
+                </div> 
+                <div class="line-separator"></div>`;
+                   }
+                   else{
+                    blogtable.innerHTML=`No available blog posts!`;
+                                           }
+                   }
+                  }
+                  
+            fetchComment();
+                  </script>
+                <!-- -->
               </div>
             </div>
           </div>
           <div id="extra">
             <label class="title-extra">Similar topics</label>
-            <div class="similar-blogs">
-              <div class="similar-topic">
-                <img src="blog-1.jpg" alt="blog-img" />
-                <label class="title-similar-topic">The blog title goes here</label>
-                <a href="#" class="link-similar-topic">READ MORE</a>
-              </div>
-              <div class="similar-topic">
-                <img src="blog-4.jpg" alt="blog-img" />
-                <label class="title-similar-topic">
-                  The blog title goes here</label>
-                <a href="#" class="link-similar-topic">READ MORE</a>
-              </div>
-              <div class="similar-topic">
-                <img src="blog0.JPG" alt="blog-img" />
-                <label class="title-similar-topic">The blog title goes here</label>
-                <a href="#" class="link-similar-topic">READ MORE</a>
-              </div>
-              <div class="similar-topic">
-                <img src="blog1.jpg" alt="blog-img" />
-                <label class="title-similar-topic"
-                  >The blog title goes here</label
-                >
-                <a href="#" class="link-similar-topic">READ MORE</a>
-              </div>
+            <div class="similar-blogs" id="similarTopics">
+        <!-- Called in Function similarTopics -->
             </div>
           </div>
         </div>
@@ -230,11 +237,38 @@ blogTitle.innerHTML = `${title}`;
         <p>Create By <a href="">InnocentMura</a> | All Right Reserved.</p>
     </div>
 
+    <script>
 
+      function fetchBlog(){
+       var blogtable=document.getElementById("View");
+       var blogs=JSON.parse(localStorage.getItem("blogs"));
+       for(var i = 0; i < blogs.length; i++){
+        var title = blogs[i].title;
+        var description = blogs[i].content;
+        var summ = blogs[i].summary; 
+        var n = 1;
+        if(blogs){
+          blogTitle.innerHTML = `${title}`;
+        blogdescription.innerHTML+=`
+          <p>${description}</p>`;
+
+          similarTopics.innerHTML += `<div class="similar-topic">
+      <img src="blog-1.jpg" alt="blog-img" />
+      <label class="title-similar-topic">${title}</label>
+      <a href="#" class="link-similar-topic">READ MORE</a>
+    </div>`;
+       }
+       else{
+        blogtable.innerHTML=`No available blog posts!`;
+                               }
+       }
+      }
+      
+fetchBlog();
+      </script>
 
     <!-- Link To JS -->
     <script src="./js/script.js"></script>
-    <script src="js/loginScript.js"></script>
 </body>
 
 </html>

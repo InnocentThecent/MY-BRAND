@@ -283,8 +283,8 @@ document.getElementById("formMessage").innerHTML=
             <span>All about Updates</span>
         </div>
         <!-- Blog Content1 -->
-        <div class="services-content">
-            <!-- Box 1 -->
+        <div class="services-content" id="blogView">
+<!--             
             <div class="services-box">
                 <div class="blog-profile-img">
                     <img src="blog00.jpg" alt="">
@@ -294,7 +294,7 @@ document.getElementById("formMessage").innerHTML=
                     exercitationem.</p>
                     <a href="blog.html">Learn More</a>
             </div>
-            <!-- Box 2 -->
+            
             <div class="services-box">
                 <div class="blog-profile-img">
                     <img src="blog-1.jpg" alt="">
@@ -304,7 +304,7 @@ document.getElementById("formMessage").innerHTML=
                     exercitationem.</p>
                     <a href="blog.html">Learn More</a>
             </div>
-            <!-- Box 3 -->
+            
             <div class="services-box">
                 <div class="blog-profile-img">
                     <img src="blog-4.jpg" alt="">
@@ -314,7 +314,7 @@ document.getElementById("formMessage").innerHTML=
                     exercitationem.</p>
                 <a href="blog.html">Learn More</a>
             </div>
-            <!-- Box 4 -->
+            
             <div class="services-box">
                 <div class="blog-profile-img">
                     <img src="blog0.JPG" alt="">
@@ -323,7 +323,7 @@ document.getElementById("formMessage").innerHTML=
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
                     exercitationem.</p>
                     <a href="blog.html">Learn More</a>
-            </div>
+            </div> -->
         </div>
 
     </section>
@@ -345,7 +345,72 @@ document.getElementById("formMessage").innerHTML=
                 <input type="button" class="contact-button" value="SEND" name="submit" id="submit" onclick="validate()">
             </form>
         </div>
-        <script>    
+        <script>
+
+            function fetchBlog(){
+             var blogtable=document.getElementById("View");
+             var blogs=JSON.parse(localStorage.getItem("blogs"));
+             for(var i = 0; i < blogs.length; i++){
+              var title = blogs[i].title;
+              var description = blogs[i].content;
+              var summ = blogs[i].summary; 
+              var n = 1;
+              if(blogs){
+
+              blogView.innerHTML+=`
+              <div class="services-box">
+                <div class="blog-profile-img">
+                <img src="blog0.JPG" alt="">
+            </div>
+            <div>
+                <h3>${title}</h3>
+                <p>${summ}</p>
+                <a href="blog.html">Learn More</a>
+            </div>
+        </div>`;
+             }
+             else{
+              blogtable.innerHTML=`No available blog posts!`;
+                                     }
+             }
+            }
+            fetchBlog(); 
+            // For Contact form
+
+            
+document.getElementById('submit').addEventListener('click', function(){
+const yourName = document.getElementById("name").value.trim();
+const yourEmail = document.getElementById("username").value.trim();
+const msg = document.getElementById('message').value.trim();
+var contact={
+// title:blogtitle,
+// summary:blogSummary,
+// content:blogcontent,
+
+name:yourName,
+email:yourEmail,
+content:msg,
+};
+console.log(contact);
+var contacts;
+//if(validate()){
+
+if(localStorage.getItem("contacts")){
+contacts=JSON.parse(localStorage.getItem("contacts"));
+contacts.push(contact);
+}
+else{
+contacts=[];
+contacts.push(contact);
+}
+localStorage.setItem("contacts",JSON.stringify(contacts));
+//location.reload();
+} // }
+);
+            
+
+            </script>
+        <!-- <script>    
             const yourName = document.getElementById("name");
             const yourEmail = document.getElementById("username");
             const msg = document.getElementById('message')
@@ -360,13 +425,13 @@ document.getElementById("formMessage").innerHTML=
     
         if(yourNameValue && yourEmailValue && msgValue){
           localStorage.setItem(yourNameValue, yourEmailValue, msgValue);
-          //location.reload();
+          location.reload();
           console.log(yourEmailValue);
     console.log(yourNameValue);
     console.log(msgValue);
         }
     };
-          </script>
+          </script> -->
     </section>
     <!-- Footer -->
     <div class="footer">

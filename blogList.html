@@ -55,15 +55,15 @@
 <div class="blog-container" id="blog">
         <div class="blogs-container">
         <div class="blogs">
-                <table id="table" border="1">
-                    <thead>
+                <table id="blogtable" border="1">
+                    <!-- <thead>
                         <th>No</th>
                         <th>Title</th>
                         <th>Image</th>
                         <th>Description</th>
                     </thead>
-                    <p id="localstorageOutput"></p>
-                    <script>
+                    <p id="localstorageOutput"></p> -->
+                    <!-- <script>
                         for(let i = 0; i<localStorage.length; i++){
   const title = localStorage.key(i);
   let no = 1;
@@ -71,16 +71,49 @@
   const localstorageOutput = document.getElementById("")
   table.innerHTML += `<table><tr><td>${no+=i}</td><td>${title}</td><td></td> <td> ${description} </td></tr><table>`;
 }
-                    </script>
+                    </script> -->
                 </table>
-                <script>
-                    
-                </script>
+                    <script>
+
+                        function fetchBlog(){
+                         var blogtable=document.getElementById("blogtable");
+                         var blogs=JSON.parse(localStorage.getItem("blogs"));
+                         blogtable.innerHTML = `<th>No</th>
+                                  <th>title</th>
+                                  <th>Summary</th>
+                                  <th>Description</th>
+                                  <th rowspan = "2"> Action </th>`
+                         for(var i = 0; i < blogs.length; i++){
+                          var title = blogs[i].title;
+                          var sum = blogs[i].summary;
+                          var description = blogs[i].content;
+                          var n = 1;
+                          if(blogs){
+
+                          blogtable.innerHTML+=`
+                                        <tr>
+                                            <td>${n+i}</td>
+                                  <td>${title}</td>
+                                  <td>${sum}</td>
+                                  <td>${description}</td>
+                                  <td><a href="blog.html" class="b.">View</a> </td>
+                                  <td>Delete</td>
+                                </tr>`;
+                         }
+                         else{
+                          blogtable.innerHTML=`No available blog posts!`;
+                                                 }
+                         }
+                        }
+                        
+fetchBlog();
+                        </script>
+                
         </div>
     </div> 
   <br>
 </div><center>
-  <a href="Dashboard.html" style="text-decoration: none; color:blue;font-family: inter;"> Back</a></label></center>
+  <a href="Dashboard.html" style="text-decoration: none; color:blue;font-family: inter;">Back</a></label></center>
 <br/>
 
 <br/>

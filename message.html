@@ -63,38 +63,42 @@
 
     <div class="blogs-container">
         <div class="blogs">
-                <table id="table" border="1">
-                    <thead>
-                        <th>No</th>
-                        <th>Names</th>
-                        <th>Email</th>
-                        <th class="th">message content</th>
-                    </thead>
-                    <p id="localstorageOutput"></p>
-                    <script>
-                        for(let a = 0; a<localStorage.length; a++){
-  const name = localStorage.key(a);
-  let no = 1;
-  const email = localStorage.getItem(name);
-  const msg = localStorage.getItem(name);
-  const localstorageOutput = document.getElementById("")
-  table.innerHTML += `<table><tr><td>${no+=a}</td><td>${name}</td><td>${email}</td> <td> ${msg} </td></tr><table>`;
-}
-                    </script>
-                    <tr>
-                        <td>1</td>
-                        <td>Ange</td>
-<td>angela@gmail.com</td>
-                        <td>DescriptionDart is a programming language designed for client development, 
-                          such as for the web and mobile apps. It is developed by Google and can also be used to build 
-                          server and desktop applications. It is an object-oriented, class-based, garbage-collected language
-                           with C-style syntax</td>
-                           <td>
-                            <button><button class="btn">Reply</button></td>
-                          </td>
-                          </tr>
-                </table>
+                <table id="blogmsg" border="1">
             
+                </table>
+                <script>
+
+                    function fetchmsg(){
+                     var blogmsg=document.getElementById("blogmsg");
+                     var contacts=JSON.parse(localStorage.getItem("contacts"));
+                     blogmsg.innerHTML = `
+                     <th>No</th>
+                              <th>Name</th>
+                              <th>Email</th>
+                              <th width="600">Message</th>`
+                     for(var i = 0; i < contacts.length; i++){
+                      var yourName = contacts[i].name;
+                      var yourEmail = contacts[i].email;
+                      var msg = contacts[i].content;
+                      var n = 1;
+                      if(contacts){
+
+                      blogmsg.innerHTML+=`
+                                    <tr>
+                                        <td>${n+i}</td>
+                              <td>${yourName}</td>
+                              <td>${yourEmail}</td>
+                              <td>${msg}</td>\
+                            </tr>`;
+                     }
+                     else{
+                      blogmsg.innerHTML=`No available blog posts!`;
+                                             }
+                     }
+                    }
+                    
+fetchmsg();
+                    </script>
             
         </div>
     </div> 

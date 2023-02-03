@@ -14,7 +14,6 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="js/blog_create.js"></script>
-<script src="js/validateblogs.js"></script>
 
 <!-- include summernote css/js -->
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
@@ -50,30 +49,35 @@
 
 <div class="form" id="formBlogs" style="width: 120%;">
 
-  <label class="ablog">Add a new Blog</label>
-      <table border="0"><tr><td>
+  <label class="ablog">Add a new Blog</label><br/>
+     <label for="errormessage" id="errormsg"></label> 
+     <table border="0"><tr><td>
       <label>Title: </label></td><td><input type="text" placeholder="Enter a blog title" name="title" id="title" 
-        class="inputtext" onkeyup="validateTitle()"></td></tr>
-       <tr><td class="hidden"></td><td height="0.2" class="hidden"><span id="titleerror"></span></td></tr> 
+        class="inputtext" ></td></tr>
+       <tr><td class="hidden"></td><td height="0.2" class="hidden"><span id="errormsg"></span></td></tr> 
       
        <tr><td>
-        <label>Image: </label></td><td><input type="file" id="image" placeholder="Enter a blog title" 
-          class="inputtext" onkeyup="validateImage()"></td></tr>
-         <tr><td class="hidden"></td><td height="0.2" class="hidden"><span id="titleerror"></span></td></tr> 
-      
-        <tr><td><label>Description</label></td><td>
-          <textarea id="summernote" name="summernote" 
-          onkeyup="validateDescription()"></textarea></td></tr>
-            <tr><td></td><td><span id="descriptionerror"></span></td></tr> 
-</table>
+        <label>Summary: </label></td><td><textarea name="summary" id="summary" class="inputtext"></textarea></td></tr>
+         <tr><td class="hidden"></td><td height="0.2" class="hidden"><span id="summaryerror"></span></td></tr> 
 
+       <tr><td>
+        <label>Image: </label></td><td><input type="file" id="image" placeholder="Enter a blog title" 
+          class="inputtext"></td></tr>
+         <tr><td class="hidden"></td><td height="0.2" class="hidden"><span id="titleerror"></span></td></tr> 
+         
+        <tr><td><label>Description</label></td><td>
+          <textarea id="summernote" name="summernote" class="inputtext"
+        ></textarea></td></tr>
+            <tr><td></td><td><span id="errorcontent"></span></td></tr> 
+</table>
+<label for="errormessage" id=""></label> 
   <br/>
       <!-- <button type="button" class="sendbutton">Post</button> -->
-      <button type="submit" class="sendbutton" id="submit" onclick="return validateForm()">Create a Blog</button>
+      <button type="submit" class="sendbutton" id="submit" onclick="return validate()">Create a Blog</button>
       <!-- <input type="button" value="reset" name="reset" id="reset"> -->
 
     
-      <script>
+      <!-- <script>
         $(document).ready(function() {
             $('#summernote').summernote();
         });
@@ -93,33 +97,96 @@ btnSubmit.onclick = function(){
       location.reload();
     }
 };
-      </script>
+      </script> -->
+      <script>
+
+        function validate(){
+          var blogtitle= title.value.trim();
+          var content=summernote.value.trim();
+          var blogSummary = summary.value.trim();
+        const title_input=document.getElementById("title");
+        const summernote_input = document.getElementById("summernote");
+        const blogsummary = document.getElementById("summary");
+        if(blogtitle.length==0){
+        errormsg.innerHTML="Title is required";
+        errormsg.style="color: red;";
+        title_input.style.border="solid 2px red";
+        }
+        if(blogtitle.length>0&&blogtitle.length<2){
+          errormsg.innerHTML="Title is too short";
+        title_input.style.border="solid 2px red";
+        }
+        if(blogtitle.length>2){
+          errormsg.innerHTML="";
+        title_input.style.border="solid 2px green";
+        }
+        if(content.length==0){
+          errorcontent.innerHTML="Blog content is required";
+          errorcontent.style="color: red;";
+          summernote_input.style.border="solid 2px red";
+        }
+        if(blogSummary.length>0&&summary.length<2){
+          summaryerror.innerHTML="Blog Summary is too short";
+          blogsummary.style.border="solid 2px red";
+        }
+        if(blogSummary.length>=100){
+          summaryerror.innerHTML="Blog Summary is too long";
+          blogsummary.style.border="solid 2px red";
+        }
+        if(blogSummary.length>3&&summary.length<200){
+          summaryerror.innerHTML="";
+          blogsummary.style.border="solid 2px green";
+        }
+        
+        // if(content.length===0){
+        // content_error.innerHTML="Please Write Something :)";
+        
+        // }
+        // if(content.length >0 && content.length < 11){
+        // content_error.innerHTML="Blog too short";
+        // }
+        //  if(content.length >=11 && content.length <= 1000){
+        //   content_error.innerHTML="";
+        
+        // // }
+        if(title.length > 3 && blogSummary.length > 3 && content.length < 200){
+          return true;
+        }
+        }
+        </script>  
+<script>$(document).ready(function() {
+  $('#summernote').summernote();
+});
+
+document.getElementById('submit').addEventListener('click', function(){
+var blogtitle=document.getElementById("title").value.trim();
+var blogSummary = document.getElementById("summary").value.trim();
+var blogcontent=document.getElementById("summernote").value.trim();
+var blog={
+title:blogtitle,
+summary:blogSummary,
+content:blogcontent,
+};
+console.log(blog);
+var blogs;
+//if(validate()){
+
+if(localStorage.getItem("blogs")){
+blogs=JSON.parse(localStorage.getItem("blogs"));
+blogs.push(blog);
+}
+else{
+blogs=[];
+blogs.push(blog);
+}
+localStorage.setItem("blogs",JSON.stringify( blogs));
+location.reload();
+ } // }
+);
+
+</script>
     </div> 
  
-
-<!-- <div class="blog-container" id="blog">
-  
-  <div id="blog-list" class="blog-list">
-      <template id="blog-template">
-          <div class="blog">
-              <h2 id="blog-title" class="blog-title">Lorem, ipsum dolor sit amet consectetur
-                  adipisicing elit.</h2>
-              <h4 id="blog-author" class="blog-author">Lorem, ipsum dolor.</h4>
-              <p id="blog-content" class="blog-content">Lorem ipsum dolor sit amet, consectetur
-                  adipisicing elit. Quae,
-                  veniam
-                  sint similique corrupti aliquam saepe. Dignissimos labore veniam ducimus ex
-                  obcaecati.
-                  Modi odit doloribus fugit magni eius obcaecati accusantium labore!</p>
-                  <div class="btn-list">
-                  <button id="blog-delete">Delete</button>
-              </div>
-          </div>
-          <br><br>
-      </template>
-  </div>
-  <br>
-  <!-- <a href="./create_blog.html" class="btn">Create Blog</a> -->
 </div> -->
 
 <br/>

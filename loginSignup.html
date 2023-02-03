@@ -21,6 +21,7 @@ function validate(){
 var username = document.getElementById("username").value;
 var password = document.getElementById("password").value;
 var x=document.getElementById("username").value;  
+var users=JSON.parse(localStorage.getItem('users'));
 var atposition=x.indexOf("@");  
 var dotposition=x.lastIndexOf(".");  
 var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -47,26 +48,37 @@ else if(password.length<6){
 }
 else
 {
-if ( username == "muragijimanainnocent3@gmail.com" && password == "123456")
-{ 
-    document.getElementById("attemptRemain").innerHTML="Login Successfully";
-window.location = "Dashboard.html";
-return false;
-}
-else{
-attempt --;
-// alert("You have left "+attempt+" attempts to try If your Attempst Finishes You will be blocked from writing anything;");
-document.getElementById("attemptRemain").innerHTML="Your credentials are incorrect. You remain "+attempt+ " attempts to try"
+    for(var i=0;i<users.length;i++){
 
-if( attempt == 0){
-document.getElementById("username").disabled = true;
-document.getElementById("password").disabled = true;
-document.getElementById("submit").disabled = true;
-return false;
+if(username==users[i].email&&password==users[i].password){
+    window.open("Dashboard.html","_blank");
+    
+   localStorage.setItem('status','auth_status');
+   attemptRemain.innerHTML='';
+}
+else if(username!=users[i].email&&password!=users[i].password){
+    attemptRemain.innerHTML='Incorrect Credentials';
+}
+// if ( username == "muragijimanainnocent3@gmail.com" && password == "123456")
+// { 
+//     document.getElementById("attemptRemain").innerHTML="Login Successfully";
+// window.location = "Dashboard.html";
+// return false;
+// }
+// else{
+//     attempt --;
+// document.getElementById("attemptRemain").innerHTML="Your credentials are incorrect. You remain "+attempt+ " attempts to try"
+
+// if(attempt == 0){
+// document.getElementById("username").disabled = true;
+// document.getElementById("password").disabled = true;
+// document.getElementById("submit").disabled = true;
+// return false;
+// }
 }
 }
 }
-}
+
 
            
 
@@ -132,7 +144,7 @@ return false;
                         </div>
 
                         <div class="field input-field">
-                            <input type="password" placeholder="Create password" class="password" id="apassword">
+                            <input type="password" placeholder="Create password" class="password" id="password">
                            
                         </div>
 
@@ -142,7 +154,7 @@ return false;
                         </div>
 
                         <div class="field button-field">
-                            <button id="btnSignup">Signup</button>
+                            <button id="btnSignup" name="btnSignup">Signup</button>
                         </div>
                     </form>
 
@@ -168,11 +180,41 @@ return false;
                 </div>
 
             </div>
-        </section>
-<div id="localstorageOutput"></div>
+        </section> <script>
+            document.getElementById('btnSignup').addEventListener('click',function(){
+               
+              var useremail=document.getElementById('email').value;
+              var userpassword=document.getElementById('password').value;
+              var confirmPassword=document.getElementById('cPassword').value;
+              console.log(useremail);
+               var user={
+                   email:useremail,
+                   password:userpassword,
+                   Confrim:confirmPassword
+           
+               }
+               var users;
+               if(useremail && userpassword && confirmPassword){
+           if(localStorage.getItem("users")){
+            users=JSON.parse(localStorage.getItem("users"));
+            users.push(user);
+           }
+           else{
+               users=[];
+               users.push(user);
+           }
+           
+           localStorage.setItem("users",JSON.stringify(users))
+           
+           }
+           window.location.href="loginSignup.html";
+           
+            });
+            
+            </script>
         <!-- JavaScript -->
          
-      <script>
+      <!-- <script>
        
         const email = document.getElementById("email");
         const password = document.getElementById("apassword");
@@ -191,7 +233,7 @@ btnSignup.onclick = function(){
     }
 };
 
-      </script>
+      </script> -->
         <script src="js/formscript.js"></script>
     </body>
 </html>
