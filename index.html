@@ -448,6 +448,23 @@ localStorage.setItem("contacts",JSON.stringify(contacts));
     <div class="copyright">
         <p>Create By <a href="">InnocentMura</a> | All Right Reserved.</p>
     </div>
+    <script>
+        // Dark Mode
+        const darkmode = document.getElementById('darkmode');
+        const body = document.body;
+
+        darkmode.onclick = function() {
+            body.classList.toggle('dark');
+        }
+
+        // Navbar
+        const menu = document.getElementById('menu-icon');
+        const navbar = document.querySelector('.navbar');
+
+        menu.onclick = function() {
+            navbar.classList.toggle('active');
+        }
+            </script>
 
 
 
